@@ -1,0 +1,58 @@
+<section class="h-full flex items-center justify-center px-6 md:px-16 overflow-hidden">
+  <div class="max-w-3xl w-full">
+
+    <!-- Greeting -->
+    <p class="text-text-muted text-sm font-medium tracking-widest uppercase mb-3">
+      {{ hero.greeting }}
+    </p>
+
+    <!-- Name -->
+    <h1 class="text-text-primary font-bold text-4xl md:text-6xl tracking-tight mb-4">
+      {{ hero.name }}
+    </h1>
+
+    <!-- Typewriter role -->
+    <div class="flex items-center gap-2 mb-6 h-10">
+      <span class="text-teal font-semibold text-xl md:text-2xl tracking-tight">
+        {{ displayedText() }}
+      </span>
+      <span class="w-[2px] h-6 bg-teal animate-pulse inline-block"></span>
+    </div>
+
+    <!-- Description -->
+    <p class="text-text-secondary text-base md:text-lg leading-relaxed max-w-xl mb-10">
+      {{ hero.description }}
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-wrap items-center gap-4 mb-12">
+      <a [routerLink]="hero.cta.primary.url"
+         class="px-6 py-3 bg-teal text-bg-base text-sm font-semibold
+                rounded-lg hover:opacity-90 transition-opacity duration-200">
+        {{ hero.cta.primary.label }}
+      </a>
+      <a [href]="hero.cta.secondary.url"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="px-6 py-3 border border-border text-text-secondary text-sm font-medium
+                rounded-lg hover:border-border-accent hover:text-text-primary
+                transition-all duration-200">
+        {{ hero.cta.secondary.label }}
+      </a>
+    </div>
+
+    <!-- Social links -->
+    <div class="flex items-center gap-6">
+      @for (social of hero.social; track social.label) {
+        <a [href]="social.url"
+           target="_blank"
+           rel="noopener noreferrer"
+           [attr.aria-label]="social.label"
+           class="text-text-muted hover:text-teal transition-colors duration-200">
+          <i class="ti {{ social.icon }} text-[22px]" aria-hidden="true"></i>
+        </a>
+      }
+    </div>
+
+  </div>
+</section>

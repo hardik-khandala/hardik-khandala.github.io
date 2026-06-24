@@ -1,0 +1,53 @@
+<!-- Desktop navbar -->
+<header class="hidden md:flex fixed top-0 left-0 right-0 z-50
+               h-16 px-8 bg-bg-surface border-b border-border
+               items-center justify-between">
+
+  <a [routerLink]="homeRoute"
+     class="text-text-primary font-semibold text-lg tracking-tight
+            hover:text-teal transition-colors duration-200">
+    Hardik Khandala
+  </a>
+
+  <nav class="flex items-center gap-8">
+    @for (link of navLinks; track link.route) {
+      <a [routerLink]="link.route"
+         routerLinkActive="!text-teal"
+         [routerLinkActiveOptions]="{ exact: link.route === homeRoute }"
+         class="text-text-secondary text-sm font-medium
+                hover:text-text-primary transition-colors duration-200">
+        {{ link.label }}
+      </a>
+    }
+  </nav>
+</header>
+
+<!-- Mobile top bar -->
+<header class="flex md:hidden fixed top-0 left-0 right-0 z-50
+               h-14 px-5 bg-bg-surface border-b border-border items-center">
+  <a [routerLink]="homeRoute"
+     class="text-text-primary font-semibold text-base tracking-tight">
+    Hardik Khandala
+  </a>
+</header>
+
+<!-- Mobile bottom pill tab bar -->
+<nav class="flex md:hidden fixed bottom-5 left-4 right-4 z-50
+            h-14 px-2
+            bg-bg-surface/80 backdrop-blur-xl
+            border border-white/[0.06]
+            rounded-[28px]
+            items-center justify-around">
+
+  @for (link of navLinks; track link.route) {
+    <a [routerLink]="link.route"
+       routerLinkActive="!text-teal"
+       [routerLinkActiveOptions]="{ exact: link.route === homeRoute }"
+       class="flex flex-col items-center justify-center gap-[3px]
+              flex-1 py-2 text-text-muted
+              hover:text-text-secondary transition-colors duration-200">
+      <i class="ti {{ link.icon }} text-[18px] leading-none" aria-hidden="true"></i>
+      <span class="text-[10px] font-medium tracking-wide">{{ link.label }}</span>
+    </a>
+  }
+</nav>

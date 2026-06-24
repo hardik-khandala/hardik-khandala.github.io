@@ -16,12 +16,21 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": {
+              "base": "dist/my-portfolio",
+              "browser": ""
+            },
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [

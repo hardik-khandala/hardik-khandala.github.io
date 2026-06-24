@@ -1,0 +1,108 @@
+<section class="min-h-screen px-6 md:px-16 py-16 max-w-3xl mx-auto">
+
+  <!-- Section header -->
+  <div class="mb-12">
+    <p class="text-purple text-sm font-medium tracking-widest uppercase mb-2">
+      My Journey
+    </p>
+    <h2 class="text-text-primary font-bold text-3xl md:text-4xl tracking-tight
+               border-l-2 border-teal pl-4">
+      Work Experience
+    </h2>
+  </div>
+
+  <!-- Timeline -->
+  <div class="relative pl-5">
+
+    <!-- Single continuous vertical line -->
+    <div class="absolute left-[7px] top-2 bottom-2 w-[2px]
+                bg-border rounded-full"></div>
+
+    @for (exp of experiences; track exp.company; let isLast = $last) {
+
+      <div class="relative mb-10" [class.mb-0]="isLast">
+
+        <!-- Company dot — teal hollow circle -->
+        <div class="absolute -left-5 top-[3px]
+                    w-4 h-4 rounded-full
+                    bg-bg-base border-2 border-teal"></div>
+
+        <!-- Company header -->
+        <div class="flex items-center gap-3 mb-4 pl-2">
+          <div class="w-8 h-8 rounded-lg bg-bg-raised border border-border
+                      flex items-center justify-center overflow-hidden shrink-0">
+            <img [src]="exp.logo"
+                 [alt]="exp.company"
+                 class="w-6 h-6 object-contain"
+                 onerror="this.style.display='none'"/>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-text-primary font-semibold text-sm">
+                {{ exp.company }}
+              </span>
+              @if (exp.roles.length > 1) {
+                <span class="text-teal text-sm font-medium">
+                  {{ exp.roles | totalDuration }}
+                </span>
+              }
+            </div>
+            <p class="text-text-muted text-sm mt-[2px]">
+              {{ exp.location }} · {{ exp.workMode }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Roles -->
+        <div class="flex flex-col gap-5 pl-2">
+          @for (role of exp.roles; track role.title) {
+
+            <div class="flex gap-3">
+
+              <!-- Purple role dot -->
+              <div class="relative flex flex-col items-center pt-[5px] shrink-0">
+                <div class="w-[7px] h-[7px] rounded-full bg-purple shrink-0"></div>
+              </div>
+
+              <!-- Role content -->
+              <div class="flex-1">
+                <h4 class="text-text-primary font-medium text-sm leading-tight">
+                  {{ role.title }}
+                </h4>
+                <p class="text-text-muted text-sm mt-[3px] mb-3">
+                  {{ role.startDate }} – {{ role.endDate ?? 'Present' }} · {{ role.startDate | duration: role.endDate }}
+                </p>
+
+                @if (role.description.length > 0) {
+                  <ul class="flex flex-col gap-[5px] mb-3">
+                    @for (point of role.description; track point) {
+                      <li class="flex gap-2 text-text-secondary text-sm leading-relaxed">
+                        <span class="text-teal shrink-0 mt-[4px] text-[8px]">▸</span>
+                        {{ point }}
+                      </li>
+                    }
+                  </ul>
+                }
+
+                @if (role.skills.length > 0) {
+                  <div class="flex flex-wrap gap-[6px]">
+                    @for (skill of role.skills; track skill) {
+                      <span class="px-2 py-[3px] text-xs font-medium
+                                   text-purple bg-purple-dim border border-purple/20
+                                   rounded-md">
+                        {{ skill }}
+                      </span>
+                    }
+                  </div>
+                }
+
+              </div>
+            </div>
+          }
+        </div>
+
+      </div>
+    }
+
+  </div>
+</section>
