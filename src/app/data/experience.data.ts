@@ -5,14 +5,14 @@ export const EXPERIENCE_DATA: Experience[] = [
   {
     company:  'Stridely Solutions',
     logo:     'assets/logos/stridely.png',
-    location: 'Ahmedabad, Gujarat, India',
+    location: 'Ahmedabad, India',
     workMode: WorkMode.OnSite,
     roles: [
       {
         title:       'Trainee Engineer',
         type:        EmploymentType.FullTime,
-        startDate:   'Jul 2025',
-        endDate:     'Jun 2026',
+        startDate:   new Date(2025, 6, 22),
+        endDate:     new Date(2026, 5, 19),
         description: [
           'Built InstaBuild360 — an AI-powered 3D metal building configurator with LangChain agent system and FastAPI backend.',
           'Implemented WebSocket-based real-time voice agent with OpenAI Whisper STT, TTS, and VAD silence detection.',
@@ -24,30 +24,32 @@ export const EXPERIENCE_DATA: Experience[] = [
       {
         title:       'Trainee',
         type:        EmploymentType.Apprenticeship,
-        startDate:   'May 2025',
-        endDate:     'Jul 2025',
+        startDate:   new Date(2025, 4, 5),
+        endDate:     new Date(2025, 6, 21),
         description: [
-          'Onboarded onto production codebase and contributed to initial feature development.',
+          'Developed a Hiring Management System using Angular, Dotnet Core, and SQL Server, enabling efficient recruitment processes.',
         ],
-        skills: ['Python', 'Angular', 'FastAPI'],
+        skills: [],
       },
     ],
   },
   {
     company:  'Radixweb',
     logo:     'assets/logos/radixweb.png',
-    location: 'Ahmedabad, Gujarat, India',
+    location: 'Ahmedabad, India',
     workMode: WorkMode.OnSite,
     roles: [
       {
         title:       'Trainee Software Engineer',
         type:        EmploymentType.Apprenticeship,
-        startDate:   'Sep 2024',
-        endDate:     'Mar 2025',
+        startDate:   new Date(2024, 8, 16),
+        endDate:     new Date(2025, 2, 31),
         description: [
-          'Worked on .NET Core and C# based enterprise applications.',
+          ' Designed and developed scalable web applications using .NET Core, Angular, and MS SQL Server',
+          ' Gained hands-on experience in full-stack development and optimized APIs for performance.',
+          ' Participated in Agile sprints and code reviews to enhance collaboration and delivery quality.'
         ],
-        skills: ['.NET Core', 'C#'],
+        skills: ['.NET Core', 'C#', 'Angular', 'SQL Server', 'REST APIs', 'AWS', 'TypeScript'],
       },
     ],
   },

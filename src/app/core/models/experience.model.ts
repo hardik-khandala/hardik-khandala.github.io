@@ -3,8 +3,8 @@ import { EmploymentType, WorkMode } from '../enums/experience.enum';
 export interface Role {
   title:       string;
   type:        EmploymentType;
-  startDate:   string;        // 'MMM YYYY' e.g. 'Jul 2025'
-  endDate:     string | null; // null = Present
+  startDate:   Date;        // 'MMM YYYY' e.g. 'Jul 2025'
+  endDate:     Date | null; // null = Present
   description: string[];
   skills:      string[];
 }

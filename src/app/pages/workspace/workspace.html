@@ -1,6 +1,6 @@
-<section class="min-h-screen px-6 md:px-16 py-16 max-w-3xl mx-auto">
+<section class="px-6 md:px-16 pt-12 md:pt-20 pb-16 max-w-3xl mx-auto">
 
-  <!-- Section header -->
+  <!-- Experience -->
   <div class="mb-12">
     <p class="text-purple text-sm font-medium tracking-widest uppercase mb-2">
       My Journey
@@ -20,89 +20,221 @@
 
     @for (exp of experiences; track exp.company; let isLast = $last) {
 
-      <div class="relative mb-10" [class.mb-0]="isLast">
+    <div class="relative mb-10" [class.mb-0]="isLast">
 
-        <!-- Company dot — teal hollow circle -->
-        <div class="absolute -left-5 top-[3px]
-                    w-4 h-4 rounded-full
-                    bg-bg-base border-2 border-teal"></div>
+      <!-- Company dot — teal hollow circle -->
+      <div class="absolute -left-5 top-[14px]
+            w-4 h-4 rounded-full
+            bg-bg-base border-2 border-teal"></div>
 
-        <!-- Company header -->
-        <div class="flex items-center gap-3 mb-4 pl-2">
-          <div class="w-8 h-8 rounded-lg bg-bg-raised border border-border
-                      flex items-center justify-center overflow-hidden shrink-0">
-            <img [src]="exp.logo"
-                 [alt]="exp.company"
-                 class="w-6 h-6 object-contain"
-                 onerror="this.style.display='none'"/>
-          </div>
-          <div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-text-primary font-semibold text-sm">
-                {{ exp.company }}
-              </span>
-              @if (exp.roles.length > 1) {
-                <span class="text-teal text-sm font-medium">
-                  {{ exp.roles | totalDuration }}
-                </span>
-              }
-            </div>
-            <p class="text-text-muted text-sm mt-[2px]">
-              {{ exp.location }} · {{ exp.workMode }}
-            </p>
-          </div>
+      <!-- Company header -->
+      <div class="flex items-center gap-3 mb-4 pl-2">
+        <div class="w-9 h-9 rounded-lg overflow-hidden shrink-0 border border-border">
+          <img [src]="exp.logo" [alt]="exp.company" class="w-full h-full object-cover"
+            onerror="this.style.display='none'" />
         </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-text-primary font-semibold text-sm">
+              {{ exp.company }}
+            </span>
+            @if (exp.roles.length > 1) {
+            <span class="text-teal text-sm font-medium">
+              {{ exp.roles | totalDuration }}
+            </span>
+            }
+          </div>
+          <p class="text-text-muted text-sm mt-[2px]">
+            {{ exp.location }} · {{ exp.workMode }}
+          </p>
+        </div>
+      </div>
 
-        <!-- Roles -->
-        <div class="flex flex-col gap-5 pl-2">
-          @for (role of exp.roles; track role.title) {
+      <!-- Roles -->
+      <div class="flex flex-col gap-5 pl-2">
+        @for (role of exp.roles; track role.title) {
 
-            <div class="flex gap-3">
+        <div class="flex gap-3">
 
-              <!-- Purple role dot -->
-              <div class="relative flex flex-col items-center pt-[5px] shrink-0">
-                <div class="w-[7px] h-[7px] rounded-full bg-purple shrink-0"></div>
-              </div>
+          <!-- Purple role dot -->
+          <div class="relative flex flex-col items-center pt-[5px] shrink-0">
+            <div class="w-[7px] h-[7px] rounded-full bg-purple shrink-0"></div>
+          </div>
 
-              <!-- Role content -->
-              <div class="flex-1">
-                <h4 class="text-text-primary font-medium text-sm leading-tight">
-                  {{ role.title }}
-                </h4>
-                <p class="text-text-muted text-sm mt-[3px] mb-3">
-                  {{ role.startDate }} – {{ role.endDate ?? 'Present' }} · {{ role.startDate | duration: role.endDate }}
-                </p>
+          <!-- Role content -->
+          <div class="flex-1">
+            <h4 class="text-text-primary font-medium text-sm leading-tight">
+              {{ role.title }}
+            </h4>
+            <p class="text-text-muted text-sm mt-[3px] mb-3">
+              {{ role.startDate | fmtDate }} – {{ role.endDate | fmtDate }} · {{ role.startDate | duration: role.endDate
+              }}
+            </p>
 
-                @if (role.description.length > 0) {
-                  <ul class="flex flex-col gap-[5px] mb-3">
-                    @for (point of role.description; track point) {
-                      <li class="flex gap-2 text-text-secondary text-sm leading-relaxed">
-                        <span class="text-teal shrink-0 mt-[4px] text-[8px]">▸</span>
-                        {{ point }}
-                      </li>
-                    }
-                  </ul>
-                }
+            @if (role.description.length > 0) {
+            <ul class="flex flex-col gap-[5px] mb-3">
+              @for (point of role.description; track point) {
+              <li class="flex gap-2 text-text-secondary text-sm leading-relaxed">
+                <span class="text-teal shrink-0 mt-[4px] text-[8px]">▸</span>
+                {{ point }}
+              </li>
+              }
+            </ul>
+            }
 
-                @if (role.skills.length > 0) {
-                  <div class="flex flex-wrap gap-[6px]">
-                    @for (skill of role.skills; track skill) {
-                      <span class="px-2 py-[3px] text-xs font-medium
+            @if (role.skills.length > 0) {
+            <div class="flex flex-wrap gap-[6px]">
+              @for (skill of role.skills; track skill) {
+              <span class="px-2 py-[3px] text-xs font-medium
                                    text-purple bg-purple-dim border border-purple/20
                                    rounded-md">
-                        {{ skill }}
-                      </span>
-                    }
-                  </div>
-                }
-
-              </div>
+                {{ skill }}
+              </span>
+              }
             </div>
+            }
+
+          </div>
+        </div>
+        }
+      </div>
+
+    </div>
+    }
+  </div>
+
+
+  <!-- Projects Section -->
+  <div class="mt-16">
+
+    <div class="mb-8">
+      <p class="text-purple text-xs font-medium tracking-widest uppercase mb-2">
+        Things I Have Built
+      </p>
+      <h2 class="text-text-primary font-bold text-3xl md:text-4xl tracking-tight
+               border-l-2 border-teal pl-4">
+        Projects
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      @for (project of projects; track project.title) {
+
+      <div (click)="openProject(project)" class="bg-bg-surface border border-border rounded-xl p-5 cursor-pointer
+                hover:border-border-accent transition-colors duration-200
+                flex flex-col gap-3">
+
+        <!-- Title -->
+        <h3 class="text-text-primary font-semibold text-sm leading-tight">
+          {{ project.title }}
+        </h3>
+
+        <!-- Description -->
+        <p class="text-text-secondary text-xs leading-relaxed flex-1">
+          {{ project.description }}
+        </p>
+
+        <!-- Technologies -->
+        <div class="flex flex-wrap gap-[6px]">
+          @for (tech of project.technologies; track tech) {
+          <span class="px-2 py-[3px] text-[10px] font-medium
+                       text-purple bg-purple-dim border border-purple/20
+                       rounded-md">
+            {{ tech }}
+          </span>
           }
         </div>
 
+        <!-- Links -->
+        @if (project.githubUrl || project.liveUrl) {
+        <div class="flex items-center gap-4 pt-2 border-t border-border">
+          @if (project.githubUrl) {
+          <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer" (click)="$event.stopPropagation()"
+            class="flex items-center gap-1 text-text-muted text-xs
+                      hover:text-teal transition-colors duration-200">
+            <i class="ti ti-brand-github text-base" aria-hidden="true"></i>
+            Source
+          </a>
+          }
+          @if (project.liveUrl) {
+          <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer" (click)="$event.stopPropagation()"
+            class="flex items-center gap-1 text-text-muted text-xs
+                      hover:text-teal transition-colors duration-200">
+            <i class="ti ti-external-link text-base" aria-hidden="true"></i>
+            Live
+          </a>
+          }
+        </div>
+        }
+
       </div>
-    }
+      }
+  </div>
+
+  <!-- Project detail modal -->
+  @if (selectedProject()) {
+  <div id="modal-backdrop" (click)="onBackdropClick($event)" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm
+              flex items-center justify-center px-4">
+
+    <div class="bg-bg-surface border border-border rounded-2xl
+                w-full max-w-lg max-h-[80vh] overflow-y-auto p-6
+                flex flex-col gap-4">
+
+      <!-- Header -->
+      <div class="flex items-start justify-between gap-4">
+        <h2 class="text-text-primary font-bold text-lg leading-tight">
+          {{ selectedProject()!.title }}
+        </h2>
+        <button (click)="closeProject()" class="text-text-muted hover:text-text-primary
+                       transition-colors duration-200 shrink-0">
+          <i class="ti ti-x text-xl" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Detail points -->
+      <ul class="flex flex-col gap-2">
+        @for (point of selectedProject()!.details; track point) {
+        <li class="flex gap-2 text-text-secondary text-sm leading-relaxed">
+          <span class="text-teal shrink-0 mt-[5px] text-[8px]">▸</span>
+          {{ point }}
+        </li>
+        }
+      </ul>
+
+      <!-- Technologies -->
+      <div class="flex flex-wrap gap-2 pt-2 border-t border-border">
+        @for (tech of selectedProject()!.technologies; track tech) {
+        <span class="px-2 py-[3px] text-[10px] font-medium
+                       text-purple bg-purple-dim border border-purple/20
+                       rounded-md">
+          {{ tech }}
+        </span>
+        }
+      </div>
+
+      <!-- Links -->
+      @if (selectedProject()!.githubUrl || selectedProject()!.liveUrl) {
+      <div class="flex items-center gap-4 pt-2 border-t border-border">
+        @if (selectedProject()!.githubUrl) {
+        <a [href]="selectedProject()!.githubUrl" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-text-muted text-sm
+                      hover:text-teal transition-colors duration-200">
+          <i class="ti ti-brand-github text-lg" aria-hidden="true"></i>
+          Source Code
+        </a>
+        }
+        @if (selectedProject()!.liveUrl) {
+        <a [href]="selectedProject()!.liveUrl" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-text-muted text-sm
+                      hover:text-teal transition-colors duration-200">
+          <i class="ti ti-external-link text-lg" aria-hidden="true"></i>
+          Live Demo
+        </a>
+        }
+      </div>
+      }
+
+    </div>
+  </div>
+  }
 
   </div>
 </section>
