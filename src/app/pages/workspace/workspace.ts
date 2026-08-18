@@ -5,10 +5,11 @@ import { TotalDurationPipe } from '../../core/pipes/total-duration-pipe';
 import { FmtDatePipe } from '../../core/pipes/fmt-pipe-pipe';
 import { PROJECT_DATA } from '../../data/project.data';
 import { Project } from '../../core/models/project.model';
+import { ScrollRevealDirective } from '../../core/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-workspace',
-  imports: [DurationPipe, TotalDurationPipe, FmtDatePipe],
+  imports: [DurationPipe, TotalDurationPipe, FmtDatePipe, ScrollRevealDirective],
   templateUrl: './workspace.html',
   styleUrl: './workspace.css',
 })

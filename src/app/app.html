@@ -1,13 +1,22 @@
+<!-- Ambient Background Glow Elements -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+  <div class="glow-orb-teal -top-40 -left-40 opacity-40"></div>
+  <div class="glow-orb-purple top-1/3 -right-40 opacity-30"></div>
+  <div class="glow-orb-teal -bottom-40 left-1/4 opacity-25"></div>
+  <!-- Subtle grid overlay -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+</div>
+
+<!-- Interactive Cursor Spotlight & Custom Cursor -->
+<app-cursor></app-cursor>
+
 <app-navbar></app-navbar>
-<main class="bg-bg-base
+
+<main class="relative z-10 bg-transparent
              h-[calc(100vh-4rem)] mt-16
              overflow-y-auto overflow-x-hidden
-             pb-28 md:pb-0
-             [&::-webkit-scrollbar]:w-1
-             [&::-webkit-scrollbar-track]:bg-transparent
-             [&::-webkit-scrollbar-thumb]:bg-border
-             [&::-webkit-scrollbar-thumb]:rounded-full
-             [scrollbar-width:thin]
-             [scrollbar-color:#1f1f1f_transparent]">
+             pb-28 md:pb-12
+             modern-scrollbar">
   <router-outlet />
 </main>
+

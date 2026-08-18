@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { HERO_DATA } from '../../data/hero.data';
 import { RouterModule } from '@angular/router';
+import { ScrollRevealDirective } from '../../core/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterModule],
+  imports: [RouterModule, ScrollRevealDirective],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
