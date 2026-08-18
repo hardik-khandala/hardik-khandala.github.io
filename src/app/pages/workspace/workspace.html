@@ -1,240 +1,313 @@
-<section class="px-6 md:px-16 pt-12 md:pt-20 pb-16 max-w-3xl mx-auto">
+<section class="px-6 sm:px-10 md:px-16 pt-10 md:pt-16 pb-24 max-w-4xl mx-auto">
 
-  <!-- Experience -->
-  <div class="mb-12">
-    <p class="text-purple text-sm font-medium tracking-widest uppercase mb-2">
-      My Journey
-    </p>
-    <h2 class="text-text-primary font-bold text-3xl md:text-4xl tracking-tight
-               border-l-2 border-teal pl-4">
+  <!-- Experience Section Header -->
+  <div appScrollReveal="left" [revealDelay]="100" class="mb-12">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple/[0.08] border border-purple/20 mb-3">
+      <i class="ti ti-timeline text-purple text-xs" aria-hidden="true"></i>
+      <span class="text-purple text-xs font-mono font-medium uppercase tracking-wider">
+        Career Journey
+      </span>
+    </div>
+    <h2 class="text-text-primary font-extrabold text-3xl sm:text-4xl md:text-5xl tracking-tight">
       Work Experience
     </h2>
+    <p class="text-text-secondary text-sm sm:text-base mt-2 max-w-xl">
+      A timeline of engineering roles building real-time AI agents, scalable cloud services, and enterprise web applications.
+    </p>
   </div>
 
   <!-- Timeline -->
-  <div class="relative pl-5">
+  <div class="relative pl-6 sm:pl-8">
 
-    <!-- Single continuous vertical line -->
-    <div class="absolute left-[7px] top-2 bottom-2 w-[2px]
-                bg-border rounded-full"></div>
+    <!-- Glowing Continuous Center-Left Circuit Line -->
+    <div class="absolute left-[11px] sm:left-[15px] top-4 bottom-4 w-[2px]
+                bg-gradient-to-b from-teal via-purple to-border rounded-full opacity-60"></div>
 
-    @for (exp of experiences; track exp.company; let isLast = $last) {
+    @for (exp of experiences; track exp.company; let i = $index; let isLast = $last) {
 
-    <div class="relative mb-10" [class.mb-0]="isLast">
+    <!-- Each Experience Block with Side-Slide Scroll Reveal -->
+    <div [appScrollReveal]="i % 2 === 0 ? 'left' : 'right'"
+         [revealDelay]="i * 150"
+         class="relative mb-12"
+         [class.mb-0]="isLast">
 
-      <!-- Company dot — teal hollow circle -->
-      <div class="absolute -left-5 top-[14px]
-            w-4 h-4 rounded-full
-            bg-bg-base border-2 border-teal"></div>
-
-      <!-- Company header -->
-      <div class="flex items-center gap-3 mb-4 pl-2">
-        <div class="w-9 h-9 rounded-lg overflow-hidden shrink-0 border border-border">
-          <img [src]="exp.logo" [alt]="exp.company" class="w-full h-full object-cover"
-            onerror="this.style.display='none'" />
-        </div>
-        <div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="text-text-primary font-semibold text-sm">
-              {{ exp.company }}
-            </span>
-            @if (exp.roles.length > 1) {
-            <span class="text-teal text-sm font-medium">
-              {{ exp.roles | totalDuration }}
-            </span>
-            }
-          </div>
-          <p class="text-text-muted text-sm mt-[2px]">
-            {{ exp.location }} · {{ exp.workMode }}
-          </p>
-        </div>
+      <!-- Timeline Node Marker with Halo Glow -->
+      <div class="absolute -left-[23px] sm:-left-[27px] top-[6px]
+                  w-6 h-6 rounded-full bg-[#06070a] border-2 border-teal
+                  flex items-center justify-center shadow-[0_0_15px_rgba(0,245,184,0.4)]">
+        <div class="w-2 h-2 rounded-full bg-teal animate-ping opacity-75"></div>
+        <div class="w-2 h-2 rounded-full bg-teal absolute"></div>
       </div>
 
-      <!-- Roles -->
-      <div class="flex flex-col gap-5 pl-2">
-        @for (role of exp.roles; track role.title) {
+      <!-- Company Glass Card Container -->
+      <div class="glass-card rounded-2xl p-5 sm:p-7 border border-white/[0.08] relative overflow-hidden">
+        
+        <!-- Subtle top gradient sheen -->
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal/40 to-transparent"></div>
 
-        <div class="flex gap-3">
-
-          <!-- Purple role dot -->
-          <div class="relative flex flex-col items-center pt-[5px] shrink-0">
-            <div class="w-[7px] h-[7px] rounded-full bg-purple shrink-0"></div>
-          </div>
-
-          <!-- Role content -->
-          <div class="flex-1">
-            <h4 class="text-text-primary font-medium text-sm leading-tight">
-              {{ role.title }}
-            </h4>
-            <p class="text-text-muted text-sm mt-[3px] mb-3">
-              {{ role.startDate | fmtDate }} – {{ role.endDate | fmtDate }} · {{ role.startDate | duration: role.endDate
-              }}
-            </p>
-
-            @if (role.description.length > 0) {
-            <ul class="flex flex-col gap-[5px] mb-3">
-              @for (point of role.description; track point) {
-              <li class="flex gap-2 text-text-secondary text-sm leading-relaxed">
-                <span class="text-teal shrink-0 mt-[4px] text-[8px]">▸</span>
-                {{ point }}
-              </li>
-              }
-            </ul>
-            }
-
-            @if (role.skills.length > 0) {
-            <div class="flex flex-wrap gap-[6px]">
-              @for (skill of role.skills; track skill) {
-              <span class="px-2 py-[3px] text-xs font-medium
-                                   text-purple bg-purple-dim border border-purple/20
-                                   rounded-md">
-                {{ skill }}
-              </span>
-              }
+        <!-- Company Header Row -->
+        <div class="flex items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/[0.06] flex-wrap sm:flex-nowrap">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/[0.1] p-1.5 flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+              <img [src]="exp.logo" [alt]="exp.company" class="w-full h-full object-contain rounded-lg"
+                   onerror="this.style.display='none'" />
             </div>
+            <div>
+              <h3 class="text-text-primary font-bold text-lg sm:text-xl tracking-tight">
+                {{ exp.company }}
+              </h3>
+              <p class="text-text-muted text-xs sm:text-sm font-medium flex items-center gap-2 mt-0.5">
+                <span>{{ exp.location }}</span>
+                <span class="inline-block w-1 h-1 rounded-full bg-text-muted"></span>
+                <span class="text-text-secondary">{{ exp.workMode }}</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Total Duration Badge if multi-role -->
+          @if (exp.roles.length > 1) {
+            <span class="px-3 py-1 rounded-full text-xs font-mono font-medium text-teal bg-teal/[0.08] border border-teal/20 self-start sm:self-auto">
+              Total: {{ exp.roles | totalDuration }}
+            </span>
+          }
+        </div>
+
+        <!-- Nested Roles -->
+        <div class="flex flex-col gap-8">
+          @for (role of exp.roles; track role.title; let isRoleFirst = $first) {
+
+          <div class="relative flex flex-col gap-3">
+            
+            <!-- Role Title & Tenure Row -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2 h-2 rounded-full bg-purple shadow-[0_0_8px_rgba(168,85,247,0.7)] shrink-0"></span>
+                <h4 class="text-text-primary font-semibold text-base sm:text-lg">
+                  {{ role.title }}
+                </h4>
+              </div>
+              <div class="flex items-center gap-2 text-text-muted text-xs font-mono pl-4 sm:pl-0">
+                <span>{{ role.startDate | fmtDate }} – {{ role.endDate | fmtDate }}</span>
+                <span class="text-teal font-medium">({{ role.startDate | duration: role.endDate }})</span>
+              </div>
+            </div>
+
+            <!-- Role Bullet Descriptions -->
+            @if (role.description.length > 0) {
+              <ul class="flex flex-col gap-2.5 my-1 pl-4 sm:pl-5">
+                @for (point of role.description; track point) {
+                  <li class="flex items-start gap-2.5 text-text-secondary text-xs sm:text-sm leading-relaxed">
+                    <span class="text-teal text-xs mt-1 shrink-0">✦</span>
+                    <span>{{ point }}</span>
+                  </li>
+                }
+              </ul>
+            }
+
+            <!-- Role Skills Tags -->
+            @if (role.skills.length > 0) {
+              <div class="flex flex-wrap gap-1.5 pl-4 sm:pl-5 pt-1">
+                @for (skill of role.skills; track skill) {
+                  <span class="px-2.5 py-1 text-[11px] font-mono font-medium
+                               text-purple bg-purple/[0.08] border border-purple/20
+                               rounded-lg hover:border-purple/40 hover:bg-purple/[0.12]
+                               transition-all duration-200">
+                    {{ skill }}
+                  </span>
+                }
+              </div>
             }
 
           </div>
+          }
         </div>
-        }
+
       </div>
 
     </div>
     }
   </div>
 
-
-  <!-- Projects Section -->
-  <div class="mt-16">
-
-    <div class="mb-8">
-      <p class="text-purple text-xs font-medium tracking-widest uppercase mb-2">
-        Things I Have Built
-      </p>
-      <h2 class="text-text-primary font-bold text-3xl md:text-4xl tracking-tight
-               border-l-2 border-teal pl-4">
-        Projects
-      </h2>
+  <!-- Projects Section Header -->
+  <div appScrollReveal="left" [revealDelay]="100" class="mt-20 mb-10">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal/[0.08] border border-teal/20 mb-3">
+      <i class="ti ti-code text-teal text-xs" aria-hidden="true"></i>
+      <span class="text-teal text-xs font-mono font-medium uppercase tracking-wider">
+        Featured Work
+      </span>
     </div>
+    <h2 class="text-text-primary font-extrabold text-3xl sm:text-4xl md:text-5xl tracking-tight">
+      Selected Projects
+    </h2>
+    <p class="text-text-secondary text-sm sm:text-base mt-2 max-w-xl">
+      Production AI architectures, computer vision pipelines, and full-stack software solutions.
+    </p>
+  </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      @for (project of projects; track project.title) {
+  <!-- Bento Projects Grid with Alternating Side Scroll Animations -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    @for (project of projects; track project.title; let idx = $index) {
 
-      <div (click)="openProject(project)" class="bg-bg-surface border border-border rounded-xl p-5 cursor-pointer
-                hover:border-border-accent transition-colors duration-200
-                flex flex-col gap-3">
+    <div [appScrollReveal]="idx % 2 === 0 ? 'left' : 'right'"
+         [revealDelay]="idx * 150"
+         (click)="openProject(project)"
+         class="glass-card rounded-2xl p-6 cursor-pointer group flex flex-col justify-between
+                relative overflow-hidden hover:border-teal/40 transition-all duration-300">
 
-        <!-- Title -->
-        <h3 class="text-text-primary font-semibold text-sm leading-tight">
-          {{ project.title }}
-        </h3>
+      <!-- Top corner gradient accent -->
+      <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-teal/[0.08] to-transparent rounded-bl-full pointer-events-none"></div>
+
+      <div class="flex flex-col gap-3">
+        <!-- Header row -->
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-text-primary font-bold text-lg sm:text-xl tracking-tight group-hover:text-teal transition-colors duration-200">
+            {{ project.title }}
+          </h3>
+          <span class="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-text-muted group-hover:text-teal group-hover:border-teal/30 transition-all duration-200">
+            <i class="ti ti-arrow-up-right text-base" aria-hidden="true"></i>
+          </span>
+        </div>
 
         <!-- Description -->
-        <p class="text-text-secondary text-xs leading-relaxed flex-1">
+        <p class="text-text-secondary text-xs sm:text-sm leading-relaxed line-clamp-3">
           {{ project.description }}
         </p>
 
-        <!-- Technologies -->
-        <div class="flex flex-wrap gap-[6px]">
+        <!-- Tech Chips -->
+        <div class="flex flex-wrap gap-1.5 pt-2">
           @for (tech of project.technologies; track tech) {
-          <span class="px-2 py-[3px] text-[10px] font-medium
-                       text-purple bg-purple-dim border border-purple/20
-                       rounded-md">
-            {{ tech }}
-          </span>
+            <span class="px-2 py-0.5 text-[10px] font-mono font-medium
+                         text-cyan bg-cyan/[0.06] border border-cyan/20
+                         rounded-md">
+              {{ tech }}
+            </span>
           }
         </div>
+      </div>
 
-        <!-- Links -->
-        @if (project.githubUrl || project.liveUrl) {
-        <div class="flex items-center gap-4 pt-2 border-t border-border">
+      <!-- Action Footer Links -->
+      @if (project.githubUrl || project.liveUrl) {
+        <div class="flex items-center gap-4 pt-4 mt-4 border-t border-white/[0.06]">
           @if (project.githubUrl) {
-          <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer" (click)="$event.stopPropagation()"
-            class="flex items-center gap-1 text-text-muted text-xs
+            <a [href]="project.githubUrl"
+               target="_blank"
+               rel="noopener noreferrer"
+               (click)="$event.stopPropagation()"
+               class="inline-flex items-center gap-1.5 text-text-muted text-xs font-mono
                       hover:text-teal transition-colors duration-200">
-            <i class="ti ti-brand-github text-base" aria-hidden="true"></i>
-            Source
-          </a>
+              <i class="ti ti-brand-github text-base" aria-hidden="true"></i>
+              <span>GitHub</span>
+            </a>
           }
           @if (project.liveUrl) {
-          <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer" (click)="$event.stopPropagation()"
-            class="flex items-center gap-1 text-text-muted text-xs
+            <a [href]="project.liveUrl"
+               target="_blank"
+               rel="noopener noreferrer"
+               (click)="$event.stopPropagation()"
+               class="inline-flex items-center gap-1.5 text-text-muted text-xs font-mono
                       hover:text-teal transition-colors duration-200">
-            <i class="ti ti-external-link text-base" aria-hidden="true"></i>
-            Live
-          </a>
+              <i class="ti ti-external-link text-base" aria-hidden="true"></i>
+              <span>Live Demo</span>
+            </a>
           }
         </div>
-        }
-
-      </div>
-      }
-  </div>
-
-  <!-- Project detail modal -->
-  @if (selectedProject()) {
-  <div id="modal-backdrop" (click)="onBackdropClick($event)" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm
-              flex items-center justify-center px-4">
-
-    <div class="bg-bg-surface border border-border rounded-2xl
-                w-full max-w-lg max-h-[80vh] overflow-y-auto p-6
-                flex flex-col gap-4">
-
-      <!-- Header -->
-      <div class="flex items-start justify-between gap-4">
-        <h2 class="text-text-primary font-bold text-lg leading-tight">
-          {{ selectedProject()!.title }}
-        </h2>
-        <button (click)="closeProject()" class="text-text-muted hover:text-text-primary
-                       transition-colors duration-200 shrink-0">
-          <i class="ti ti-x text-xl" aria-hidden="true"></i>
-        </button>
-      </div>
-
-      <!-- Detail points -->
-      <ul class="flex flex-col gap-2">
-        @for (point of selectedProject()!.details; track point) {
-        <li class="flex gap-2 text-text-secondary text-sm leading-relaxed">
-          <span class="text-teal shrink-0 mt-[5px] text-[8px]">▸</span>
-          {{ point }}
-        </li>
-        }
-      </ul>
-
-      <!-- Technologies -->
-      <div class="flex flex-wrap gap-2 pt-2 border-t border-border">
-        @for (tech of selectedProject()!.technologies; track tech) {
-        <span class="px-2 py-[3px] text-[10px] font-medium
-                       text-purple bg-purple-dim border border-purple/20
-                       rounded-md">
-          {{ tech }}
-        </span>
-        }
-      </div>
-
-      <!-- Links -->
-      @if (selectedProject()!.githubUrl || selectedProject()!.liveUrl) {
-      <div class="flex items-center gap-4 pt-2 border-t border-border">
-        @if (selectedProject()!.githubUrl) {
-        <a [href]="selectedProject()!.githubUrl" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-text-muted text-sm
-                      hover:text-teal transition-colors duration-200">
-          <i class="ti ti-brand-github text-lg" aria-hidden="true"></i>
-          Source Code
-        </a>
-        }
-        @if (selectedProject()!.liveUrl) {
-        <a [href]="selectedProject()!.liveUrl" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-text-muted text-sm
-                      hover:text-teal transition-colors duration-200">
-          <i class="ti ti-external-link text-lg" aria-hidden="true"></i>
-          Live Demo
-        </a>
-        }
-      </div>
       }
 
     </div>
+    }
   </div>
+
+  <!-- Apple Liquid Glass Project Detail Modal -->
+  @if (selectedProject()) {
+    <div id="modal-backdrop"
+         (click)="onBackdropClick($event)"
+         class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md
+                flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
+
+      <div class="liquid-glass-pill bg-[#0e1017]/95 border border-white/[0.15] rounded-3xl
+                  w-full max-w-xl max-h-[85vh] overflow-y-auto p-6 sm:p-8
+                  flex flex-col gap-5 shadow-2xl animate-scaleUp modern-scrollbar">
+
+        <!-- Modal Header -->
+        <div class="flex items-start justify-between gap-4 pb-4 border-b border-white/[0.08]">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal/[0.08] border border-teal/20 text-teal text-[10px] font-mono uppercase mb-1.5">
+              Project Details
+            </div>
+            <h2 class="text-text-primary font-extrabold text-2xl tracking-tight">
+              {{ selectedProject()!.title }}
+            </h2>
+          </div>
+          <button (click)="closeProject()"
+                  class="w-9 h-9 rounded-full bg-white/[0.05] border border-white/[0.1]
+                         flex items-center justify-center text-text-muted
+                         hover:text-text-primary hover:bg-white/[0.1] hover:rotate-90
+                         transition-all duration-200 shrink-0 cursor-pointer">
+            <i class="ti ti-x text-lg" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Detailed Bullet Points -->
+        <div class="flex flex-col gap-3">
+          <h4 class="text-text-primary font-semibold text-xs font-mono uppercase tracking-wider text-text-muted">
+            Architecture & Key Deliverables
+          </h4>
+          <ul class="flex flex-col gap-2.5">
+            @for (point of selectedProject()!.details; track point) {
+              <li class="flex items-start gap-2.5 text-text-secondary text-xs sm:text-sm leading-relaxed">
+                <span class="text-teal text-xs mt-1 shrink-0">✦</span>
+                <span>{{ point }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <!-- Tech Stack Badges -->
+        <div class="flex flex-col gap-2.5 pt-4 border-t border-white/[0.08]">
+          <h4 class="text-text-muted font-semibold text-xs font-mono uppercase tracking-wider">
+            Technologies & Tools
+          </h4>
+          <div class="flex flex-wrap gap-1.5">
+            @for (tech of selectedProject()!.technologies; track tech) {
+              <span class="px-2.5 py-1 text-xs font-mono font-medium
+                           text-purple bg-purple/[0.08] border border-purple/20
+                           rounded-lg">
+                {{ tech }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- Modal External Links -->
+        @if (selectedProject()!.githubUrl || selectedProject()!.liveUrl) {
+          <div class="flex items-center gap-4 pt-4 border-t border-white/[0.08]">
+            @if (selectedProject()!.githubUrl) {
+              <a [href]="selectedProject()!.githubUrl"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-xs text-text-primary
+                        bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] hover:border-teal/40 hover:text-teal
+                        transition-all duration-200">
+                <i class="ti ti-brand-github text-base" aria-hidden="true"></i>
+                <span>View Source Code</span>
+              </a>
+            }
+            @if (selectedProject()!.liveUrl) {
+              <a [href]="selectedProject()!.liveUrl"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs text-[#06070a]
+                        bg-teal hover:shadow-[0_0_20px_rgba(0,245,184,0.4)]
+                        transition-all duration-200">
+                <i class="ti ti-external-link text-base" aria-hidden="true"></i>
+                <span>Launch Live App</span>
+              </a>
+            }
+          </div>
+        }
+
+      </div>
+    </div>
   }
 
-  </div>
 </section>
