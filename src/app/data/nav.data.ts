@@ -1,8 +1,8 @@
 import { NavLink }  from '../core/models/nav-link.model';
-import { NavRoute } from '../core/enums/nav-route.enum';
+import { Section } from '../core/enums/section.enum';
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'Home',  route: NavRoute.Home,  icon: 'ti-home'      },
-  { label: 'About', route: NavRoute.About, icon: 'ti-user'      },
-  { label: 'Work',  route: NavRoute.Work,  icon: 'ti-briefcase' },
+  { label: 'Home',  section: Section.Home,  icon: 'ti-home'      },
+  { label: 'About', section: Section.About, icon: 'ti-user'      },
+  { label: 'Work',  section: Section.Work,  icon: 'ti-briefcase' },
 ];

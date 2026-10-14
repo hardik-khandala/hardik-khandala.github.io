@@ -1,7 +1,7 @@
-import { NavRoute } from "../enums/nav-route.enum";
+import { Section } from '../enums/section.enum';
 
 export interface NavLink {
   label: string;
-  route: NavRoute;
-  icon:  string;
+  section: Section;
+  icon: string;
 }

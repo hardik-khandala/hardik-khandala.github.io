@@ -4,13 +4,16 @@
                items-center justify-between">
 
   <!-- Brand logo -->
-  <a [routerLink]="homeRoute"
-     class="flex items-center gap-2.5 group cursor-pointer">
-    <div class="w-8 h-8 rounded-lg bg-teal/10 border border-teal/20 flex items-center justify-center
-                group-hover:border-teal/50 group-hover:bg-teal/20 group-hover:scale-105
-                transition-all duration-300 shadow-[0_0_15px_rgba(0,245,184,0.15)]">
-      <span class="text-teal font-mono font-bold text-sm">H</span>
-    </div>
+  <a href="#home"
+   (click)="scrollTo(homeSection, $event)"
+   class="flex items-center gap-2.5 group cursor-pointer">
+    <div class="w-7 h-7 rounded-md bg-teal/10 border border-teal/30 flex items-center justify-center overflow-hidden transition-colors group-hover:border-teal/60">
+    <img 
+      src="assets/logos/logo.png" 
+      alt="Hardik Khandala Logo" 
+      class="w-full h-full object-contain p-0.5" 
+    />
+  </div>
     <div class="flex flex-col">
       <span class="text-text-primary font-semibold text-base tracking-tight group-hover:text-teal transition-colors duration-200">
         Hardik Khandala
@@ -20,11 +23,14 @@
 
   <!-- Center Nav links with glass pills -->
   <nav class="flex items-center gap-1.5 p-1 bg-white/[0.03] border border-white/[0.06] rounded-full backdrop-blur-md">
-    @for (link of navLinks; track link.route) {
-      <a [routerLink]="link.route"
-         routerLinkActive="!bg-white/[0.08] !text-teal !border-teal/30 !shadow-[0_0_12px_rgba(0,245,184,0.15)]"
-         [routerLinkActiveOptions]="{ exact: link.route === homeRoute }"
-         class="px-4 py-1.5 text-text-secondary text-xs font-medium rounded-full
+    @for (link of navLinks; track link.section) {
+      <a [href]="'#' + link.section"
+        (click)="scrollTo(link.section, $event)"
+        [attr.aria-current]="activeSection() === link.section ? 'location' : null"
+        [class]="activeSection() === link.section
+          ? '!bg-white/[0.08] !text-teal !border-teal/30 !shadow-[0_0_12px_rgba(0,245,184,0.15)]'
+          : ''"
+        class="px-4 py-1.5 text-text-secondary text-xs font-medium rounded-full
                 border border-transparent hover:text-text-primary hover:bg-white/[0.04]
                 transition-all duration-200 flex items-center gap-1.5">
         <i class="ti {{ link.icon }} text-sm" aria-hidden="true"></i>
@@ -46,15 +52,18 @@
 <!-- Mobile top header bar -->
 <header class="flex md:hidden fixed top-0 left-0 right-0 z-40
                h-14 px-4 liquid-glass-desktop items-center justify-between">
-  <a [routerLink]="homeRoute" class="flex items-center gap-2">
-    <div class="w-7 h-7 rounded-md bg-teal/10 border border-teal/30 flex items-center justify-center">
-      <span class="text-teal font-mono font-bold text-xs">H</span>
-    </div>
-    <span class="text-text-primary font-semibold text-sm tracking-tight">
-      Hardik Khandala
-    </span>
-  </a>
-
+  <a href="#home" (click)="scrollTo(homeSection, $event)" class="flex items-center gap-2 group">
+  <div class="w-7 h-7 rounded-md bg-teal/10 border border-teal/30 flex items-center justify-center overflow-hidden transition-colors group-hover:border-teal/60">
+    <img 
+      src="assets/logos/logo.png" 
+      alt="Hardik Khandala Logo" 
+      class="w-full h-full object-contain p-0.5" 
+    />
+  </div>
+  <span class="text-text-primary font-semibold text-sm tracking-tight">
+    Hardik Khandala
+  </span>
+</a>
   <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal/[0.08] border border-teal/20">
     <span class="relative flex h-1.5 w-1.5">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal opacity-75"></span>
@@ -70,15 +79,16 @@
             liquid-glass-pill rounded-full
             items-center justify-between">
 
-  @for (link of navLinks; track link.route) {
-    <a [routerLink]="link.route"
-       routerLinkActive="active-tab"
-       [routerLinkActiveOptions]="{ exact: link.route === homeRoute }"
-       class="nav-tab-item flex flex-col items-center justify-center flex-1 h-full
+  @for (link of navLinks; track link.section) {
+  <a [href]="'#' + link.section"
+      (click)="scrollTo(link.section, $event)"
+      [attr.aria-current]="activeSection() === link.section ? 'location' : null"
+      [class.active-tab]="activeSection() === link.section"
+      class="nav-tab-item flex flex-col items-center justify-center flex-1 h-full
               rounded-full text-text-muted transition-all duration-300
               hover:text-text-secondary active:scale-95">
       <i class="ti {{ link.icon }} text-[19px] leading-none mb-0.5" aria-hidden="true"></i>
       <span class="text-[10px] font-medium tracking-wide">{{ link.label }}</span>
     </a>
   }
-</nav>
+</nav>
